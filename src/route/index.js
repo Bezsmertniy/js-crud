@@ -5,128 +5,141 @@ const router = express.Router()
 
 // ================================================================
 
+class Product {
+  static #list = []
+
+  static #count = 0
+
+  constructor(img, title, description, category, price) {
+    this.id = ++Product.#count
+    this.title = this.title
+    this.img = img
+    this.description = description
+    this.category = category
+    this.price = price
+  }
+
+  static add = (
+    img,
+    title,
+    description,
+    category,
+    price,
+  ) => {
+    const newProduct = new Product(
+      img,
+      title,
+      description,
+      category,
+      price,
+    )
+
+    this.#list.push(newProduct)
+  }
+
+  static getList = () => {
+    return this.#list
+  }
+
+  static getById = (id) => {
+    return this.#list.find((product) => product.id === id)
+  }
+
+  static getRandomList = (id) => {
+    // Фільтруємо товар, щобвилучити той, з якимпорівнюємо id
+    const filteredList = this.#list.filter(
+      (product) => product.id !== id,
+    )
+
+    //   Відсортовуємо за додпомогою Math.random() та переміщаємо масив
+    const shuffledList = filteredList.sort(
+      () => Math.random() - 0.5,
+    )
+
+    //   Повертаємо перші 3 елементи з перемішаного масиву
+    return shuffledList.slice(0, 3)
+  }
+}
+
+Product.add(
+  'http://picsum.photos/200/300',
+  `Комп'ютер Artline Gaming (X43v31) AMD Ryzen 5 3600/`,
+  `AMD Ryzen 5 3600 (3.6 - 4.2 Ггц) / RAM 16 Гб / HDD 1 Тб + SSD 480 ГБ / nVidia GeForse RTX 3050, 8 ГБ / без ОД / LAN / без OC`,
+  [
+    { id: 1, text: 'Готовий до відправки' },
+    { id: 2, text: 'Топ продажів' },
+  ],
+  27000,
+)
+Product.add(
+  'http://picsum.photos/200/300',
+  `Комп'ютер Asus AiO M3400WYAK-BA020M`,
+  `AMD Ryzen 5 5625U (6 ядер / 12 потоків)/ RAM 8ГБ DDR4-3200 / SSD 512ГБ / AMD Radeon Vega 7 (448 конвеєрів )/ Wi-Fi / Bluetooth`,
+  [
+    { id: 1, text: 'Готовий до відправки' },
+    { id: 2, text: 'Топ продажів' },
+  ],
+  27000,
+)
+Product.add(
+  'http://picsum.photos/200/300',
+  `Комп'ютер Lenovo IdeaCentre G5 Gaming 14IOB6`,
+  `Intel Core i5-10400F (6 ядер / 12 потоків) / Intel B560 / 16GB DDR4 / 256GB SSD M.2 NVMe + 1TB HDD / GeForce GTX 1650 SUPER 4GB GDDR6 / Wi-Fi`,
+  [
+    { id: 1, text: 'Готовий до відправки' },
+    { id: 2, text: 'Топ продажів' },
+  ],
+  2000,
+)
+
+// ================================================================
+
 // router.get Створює нам один ентпоїнт
 
 // ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/', function (req, res) {
   // res.render генерує нам HTML сторінку
-  const list = User.getList()
+
   // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('index', {
+  res.render('purchase-index', {
     // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-    style: 'index',
+    style: 'purchase-index',
 
     data: {
-      users: {
-        list,
-        isEmpty: list.lenght === 0,
-      },
+      img: 'http://picsum.photos/200/300',
+      title: `Комп'ютер Artline Gaming (X43v31) AMD Ryzen 5 3600/`,
+      description: `AMD Ryzen 5 3600 (3.6 - 4.2 Ггц) / RAM 16 Гб / HDD 1 Тб + SSD 480 ГБ / nVidia GeForse RTX 3050, 8 ГБ / без ОД / LAN / без OC`,
+      category: [
+        { id: 1, text: 'Готовий до відправки' },
+        { id: 2, text: 'Топ продажів' },
+      ],
+      price: 27000,
     },
   })
   // ↑↑ сюди вводимо JSON дані
 })
 
 // ================================================================
-router.post('/user-create', function (req, res) {
-  const { email, login, password } = req.body
 
-  const user = new User(email, login, password)
+// router.get Створює нам один ентпоїнт
 
-  User.add(user)
+// ↙️ тут вводимо шлях (PATH) до сторінки
+router.get('/', function (req, res) {
+  // res.render генерує нам HTML сторінку
 
-  console.log(User.getList())
+  // ↙️ cюди вводимо назву файлу з сontainer
+  res.render('purchase-index', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: 'purchase-index',
 
-  res.render('success-info', {
-    style: 'success-info',
-    info: 'Користувач створений',
+    data: {
+      list: Product.getList(),
+    },
   })
-})
-// ================================================================
-
-class User {
-  static #list = []
-
-  constructor(email, login, password) {
-    this.email = email
-    this.login = login
-    this.password = password
-    this.id = new Date().getTime()
-  }
-
-  verifyPassword = (password) => this.password === password
-
-  static add = (user) => {
-    this.#list.push(user)
-  }
-
-  static getList = () => this.#list
-
-  static getById = (id) =>
-    this.#list.find((user) => user.id === id)
-
-  static deleteById = (id) => {
-    const index = this.#list.findIndex(
-      (user) => user.id === id,
-    )
-    if (index !== -1) {
-      this.#list.splice(index, 1)
-      return true
-    } else {
-      return false
-    }
-  }
-
-  static updateById = (id, date) => {
-    const user = this.getById(id)
-
-    if (user) {
-      this.update(user, date)
-      return true
-    } else {
-      return false
-    }
-  }
-
-  static update = (user, { email }) => {
-    if (email) {
-      user.email = email
-    }
-  }
-}
-
-// ================================================================
-
-router.get('/user-delete', function (req, res) {
-  const { id } = req.query
-
-  User.deleteById(Number(id))
-
-  res.render('success-info', {
-    style: 'success-info',
-    info: 'Користувач видалений',
-  })
+  // ↑↑ сюди вводимо JSON дані
 })
 
 // ================================================================
 
-router.post('/user-update', function (req, res) {
-  const { email, password, id } = req.body
-
-  let result = false
-
-  const user = User.getById(Number(id))
-
-  if (user.verifyPassword(password)) {
-    User.update(user, { email })
-    result = true
-  }
-
-  res.render('success-info', {
-    style: 'success-info',
-    info: result
-      ? 'Емайл пошта оновлена'
-      : 'Сталася помилка',
-  })
-})
 // Підключаємо роутер до бек-енду
 module.exports = router
