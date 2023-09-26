@@ -24,7 +24,7 @@
   grid-template-columns: repeat(3, 1fr);
 }
 .product__card {
-  border: 1px solid #000;
+  border: 1px solid black;
   border-radius: 25px;
   padding-top: 12px;
 }
@@ -46,7 +46,7 @@
   font-weight: bold;
 }
 .product__edit {
-  color: blue;
+  color: #3326e9;
 }
 .product__row {
   display: flex;

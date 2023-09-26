@@ -135,16 +135,10 @@
   gap: 24px;
 }
 
-.purchase-info {
-  display: flex;
-  gap: 16px;
-}
-
-.purchase-item {
+.card__block {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  padding: 20px;
 }
 
 .purchase-item__block {

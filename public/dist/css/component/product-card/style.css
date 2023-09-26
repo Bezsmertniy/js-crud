@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 12px;
   justify-content: space-between;
-  border: 1px solid;
+  border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 4px 4px 8px #f0f0f0;
   padding: 16px;
@@ -30,7 +30,7 @@
 }
 
 .product_card-link {
-  color: blue;
+  color: #3326e9;
 }
 
 /*# sourceMappingURL=style.css.map */

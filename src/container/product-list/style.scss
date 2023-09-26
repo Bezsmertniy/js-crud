@@ -28,7 +28,7 @@
     grid-template-columns: repeat(3, 1fr);
 
     &__card{
-        border: 1px solid #000;
+        border: 1px solid s.color('dark');
         border-radius: 25px;
         padding-top: s.space(3)
     }
@@ -55,7 +55,7 @@
     }
 
     &__edit {
-        color: blue;
+        color: s.color('button');
     }
 
     &__row {

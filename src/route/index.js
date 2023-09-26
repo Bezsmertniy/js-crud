@@ -35,14 +35,8 @@ class Product {
   }
 
   static getList = () => {
-    return Purchase.#list.reverse().map((purchase) => ({
-      id: purchase.id,
-      product: purchase.product.title,
-      totalPrice: purchase.totalPrice,
-      bonus: Purchase.calcBonusAmount(purchase.totalPrice),
-    }))
+    return this.#list
   }
-
   static getById = (id) => {
     return this.#list.find((product) => product.id === id)
   }
@@ -174,7 +168,12 @@ class Purchase {
   }
 
   static getList = () => {
-    return Purchase.#list.reverse()
+    return Purchase.#list.reverse().map((purchase) => ({
+      id: purchase.id,
+      product: purchase.product.title,
+      totalPrice: purchase.totalPrice,
+      bonus: Purchase.calcBonusAmount(purchase.totalPrice),
+    }))
   }
 
   static getById = (id) => {

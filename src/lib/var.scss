@@ -5,6 +5,7 @@ $colorMap: (
 	danger: red,
 	gray: gray,
 	dark: black,
+	success: #008000,
 );
 
 @function color ($key) {

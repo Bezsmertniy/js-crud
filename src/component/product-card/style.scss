@@ -5,7 +5,7 @@
     flex-direction: column;
     gap: s.space(3);
     justify-content: space-between;
-    border: 1px solid s.color(border);
+    border: 1px solid s.color(light);
     border-radius: 10px;
     box-shadow: 4px 4px 8px #f0f0f0;
     padding: s.space(4);
@@ -19,12 +19,12 @@
 }
 
 .product_card-title {
-	font-size: 20px;
+	font-size: s.space(5);
 	font-weight: bold;
 }
 
 .product_card-description {
-	font-size: 16px;
+	font-size: s.space(4);
 }
 
 .product_card-price {
@@ -32,6 +32,6 @@
 }
 
 .product_card-link {
-	color: blue;
+	color: s.color(button);
 }
 
