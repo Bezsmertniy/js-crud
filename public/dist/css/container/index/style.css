@@ -8,7 +8,7 @@
   font-size: 20px;
   font-weight: bold;
   padding-bottom: 4px;
-  border-bottom: 1px solid #d4d4d4;
+  border-bottom: 1px solid #ddd;
 }
 .form__content {
   display: grid;
@@ -23,11 +23,11 @@
   font-size: 14px;
 }
 .form__input {
-  border: 1px solid #d4d4d4;
+  border: 1px solid #ddd;
   padding: 8px;
 }
 .form__button {
-  border: 1px solid #d4d4d4;
+  border: 1px solid #ddd;
   padding: 8px;
   border-radius: 20px;
 }

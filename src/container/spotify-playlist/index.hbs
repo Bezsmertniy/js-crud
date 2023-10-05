@@ -8,18 +8,19 @@
 	<div class="main__content">
 		<h1 class="title title--center">{{name}}</h1>
 
-		<a href="#" class="add-button">
+		<a href="/spotify-track-add?playlistId={{playlistId}}" class="add-button">
 			<img src="/svg/add_button.svg">
-			Додати до плейлиста
+			Додати до плейліста
 		</a>
 
-		<ul class="track-list">
+
+		<ul class="track__list">
 			{{#each tracks}}
 			<li class="track">
 				<img src="{{image}}" alt="{{name}}">
 				<div class="track__content">
 					<strong class="track__name">{{name}}</strong>
-					<em class="track__autor">{{autor}}</em>
+					<em class="track_author">{{author}}</em>
 				</div>
 				<a href="/spotify-track-delete?playlistId={{../playlistId}}&trackId={{id}}">
 					<img src="/svg/delete_button.svg">
@@ -30,6 +31,7 @@
 	</div>
 	{{/with}}
 </main>
+
 
 {{!
 Цей код містить лише те, що буде виводитись в

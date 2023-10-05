@@ -1,6 +1,6 @@
 a {
   text-decoration: none;
-  color: inherrit;
+  color: inherit;
   transition: opacity 0.6s;
 }
 a:hover {
@@ -8,12 +8,12 @@ a:hover {
 }
 
 .main {
-  background-color: #808080;
+  background-color: #121212;
   height: 100%;
-  color: #d4d4d4;
+  color: #ddd;
   display: flex;
   justify-content: center;
-  padding: 24px 24px;
+  padding: 24px 8px;
 }
 
 .main__content {
@@ -50,7 +50,36 @@ a:hover {
 }
 .track__name {
   font-size: 24px;
-  color: #d4d4d4;
+  color: #ddd;
+}
+.track__author {
+  font-size: 16px;
+  color: #BDBDBD;
+}
+
+.playlist {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.playlist__list {
+  display: grid;
+  gap: 28px;
+}
+.playlist__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+.playlist__name {
+  font-size: 24px;
+  color: #ddd;
+}
+.playlist__amount {
+  font-size: 16px;
+  color: #BDBDBD;
 }
 
 .title--small {
@@ -82,25 +111,25 @@ a:hover {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 40px;
   align-items: center;
+  gap: 40px;
 }
 
-.form__field {
+.form__fild {
   width: 100%;
   font-size: 64px;
-  color: #d4d4d4;
+  color: #ddd;
+  text-align: center;
   padding: 16px;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #BDBDBD;
 }
 
 .form__button {
-  color: #808080;
-  background-color: #20D562;
-  max-width: fit-content;
-  font-size: 20px;
+  background-color: green;
   padding: 12px 40px;
   border-radius: 50px;
+  font-size: 20px;
+  max-width: fit-content;
   transition: opacity 0.6s;
 }
 .form__button:hover {

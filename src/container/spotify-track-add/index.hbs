@@ -19,9 +19,7 @@
 						<strong class="track__name">{{name}}</strong>
 						<em class="track_author">{{author}}</em>
 					</div>
-					{{!-- <a href="/spotify-track-delete?playlistId={{../playlistId}}&trackId={{id}}">
-						<img src="/svg/delete_button.svg">
-					</a> --}}
+
 					<form action="/spotify-track-add" method="POST">
 						<input type="hidden" name="playlistId" value="{{../playlistId}}">
 						<input type="hidden" name="trackId" value="{{id}}">
@@ -37,7 +35,6 @@
 	</section>
 
 </main>
-
 {{!
 Цей код містить лише те, що буде виводитись в
 
